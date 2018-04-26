@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "jsx": "react",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules",
+  ],
+}
