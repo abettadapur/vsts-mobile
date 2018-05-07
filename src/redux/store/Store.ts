@@ -16,16 +16,18 @@ const initialState: DeepPartial<IState> = {
     accountState: { accounts: [] }
 };
 
-const sagaMiddleware = createSagaMiddleware();
-
 export default function configureStore(
 
 ): Store<IState> {
-    return createStore<IState, any, any, any>(
+    const sagaMiddleware = createSagaMiddleware();
+
+    const store = createStore<IState, any, any, any>(
         reducers,
         initialState,
         applyMiddleware(sagaMiddleware)
     );
-}
 
-sagaMiddleware.run(rootSaga);
+    sagaMiddleware.run(rootSaga);
+
+    return store;
+}

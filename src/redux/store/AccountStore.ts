@@ -7,6 +7,10 @@ export interface IAccountState {
 }
 
 const reducer: Reducer<IAccountState> = (state: IAccountState, action: Action) => {
+    if (!state) {
+        return { accounts: [] };
+    }
+
     switch (action.type) {
         case AccountActionTypes.FetchAccountsFailed:
             return handleFetchAccountsFailed(state, action as FetchAccountsFailedAction);

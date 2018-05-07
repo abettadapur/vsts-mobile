@@ -7,7 +7,7 @@ import { VssAccount } from '../../models/Account';
 
 function* fetchAccounts(): SagaIterator {
     try {
-        const accounts: VssAccount[] = yield call(AccountApi.getAccounts);
+        const accounts: VssAccount[] = [{ id: "id", name: "Name" }] as VssAccount[];//yield call(AccountApi.getAccounts);
         yield put(AccountActions.fetchAccountsSucceeded(accounts));
     } catch (error) {
         yield put(AccountActions.fetchAccountsFailed(error));
