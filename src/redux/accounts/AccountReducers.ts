@@ -1,12 +1,12 @@
 import { VssAccount } from '../../models/Account';
 import { Reducer, Action } from 'redux';
-import { AccountActionTypes, FetchAccountsFailedAction, FetchAccountsSucceededAction } from '../actions/Actions';
+import { AccountActionTypes, FetchAccountsFailedAction, FetchAccountsSucceededAction } from './AccountActions';
 
 export interface IAccountState {
     accounts: VssAccount[];
 }
 
-const reducer: Reducer<IAccountState> = (state: IAccountState, action: Action) => {
+export const AccountReducer: Reducer<IAccountState> = (state: IAccountState, action: Action) => {
     if (!state) {
         return { accounts: [] };
     }
@@ -31,5 +31,3 @@ function handleFetchAccountsSucceeded(state: IAccountState, action: FetchAccount
         accounts: action.payload
     };
 }
-
-export default reducer;

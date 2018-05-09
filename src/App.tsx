@@ -1,24 +1,38 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AccountPage from "./components/pages/AccountPage";
-import { Provider, Store } from 'react-redux';
-import configureStore, { IState } from './redux/store/Store';
+import { Provider, Store, Dispatch, connect } from 'react-redux';
+// import { navigation } from "react-navigation";
+import { configureStore, IState } from './redux/store/Store';
+import { AppNavigator, addListener } from './navigation/AppNavigator';
+import { addNavigationHelpers, NavigationProp, NavigationState, NavigationDispatch } from 'react-navigation';
 
-export default class App extends React.Component {
-  private _store: Store<IState>;
-  constructor() {
-    super(null);
-    this._store = configureStore();
-  }
+const store = configureStore();
 
+const App: React.SFC<{ dispatch, navigationState: NavigationState }> = ({ dispatch, navigationState }) => {
+  return (
+    <AppNavigator
+      navigation={
+        addNavigationHelpers({
+          dispatch,
+          state: navigationState
+        })
+      }
+    />
+  );
+}
+
+const mapStateToProps = (state: IState) => ({
+  navigationState: state.navigationState
+});
+
+const AppWithNavigationState = connect(mapStateToProps)(App);
+
+export class Root extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!!!!</Text>
-        <Provider store={this._store}>
-          <AccountPage />
-        </Provider>
-      </View>
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
     );
   }
 }

@@ -3,10 +3,9 @@ import * as React from 'react';
 import { connect } from "react-redux";
 import { VssAccount } from '../../models/Account';
 import { View, Text } from 'react-native';
-import { IAccountState } from '../../redux/store/AccountStore';
+import { IAccountState, AccountActionTypes, AccountActions } from '../../redux/accounts';
 import { Dispatch } from 'redux';
 import { IState } from '../../redux/store/Store';
-import { AccountActionTypes, AccountActions } from '../../redux/actions/Actions';
 
 const mapStateToProps = (state: IState): Partial<IAccountPageProps> => {
     return {
@@ -39,7 +38,7 @@ export class AccountPage extends React.Component<IAccountPageProps> {
     }
 }
 
-export default connect(
+export const ConnectedAccountPage = connect(
     mapStateToProps,
     mapDispatchToProps
 )(AccountPage);

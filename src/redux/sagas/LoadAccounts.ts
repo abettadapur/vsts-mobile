@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 import AccountApi from "../../api/AccountApi";
-import { AccountActionTypes, AccountActions } from '../actions/Actions';
+import { AccountActionTypes, AccountActions } from '../accounts';
 import { VssAccount } from '../../models/Account';
 
 
